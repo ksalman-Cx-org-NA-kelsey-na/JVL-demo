@@ -1,11 +1,13 @@
 #### INSTANCE HTTP ####
 
 resource "aws_lb" "front_end" {
+  enable_deletion_protection = true
+  drop_invalid_header_fields = true
   # ...
 }
 
 resource "aws_lb_target_group" "front_end" {
-  # ...
+  # ....
 }
 
 resource "aws_lb_listener" "front_end" {
@@ -18,7 +20,7 @@ resource "aws_lb_listener" "front_end" {
 
     redirect {
       port        = "80"
-      protocol    = "HTTP"
+      protocol    = "HTTPS"
       status_code = "HTTP_301"
     }
   }
@@ -32,6 +34,8 @@ resource "aws_alb_listener" "front_end" {
 
 # Create instance
 resource "aws_instance" "http" {
+  ebs_optimized = true
+  monitoring = true
   for_each      = var.http_instance_names
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
