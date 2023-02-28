@@ -17,7 +17,7 @@ jobs:
         uses: Checkmarx/ast-github-action@2.0.9
         with:
           base_uri: https://ast.checkmarx.net/
-            cx_apikey ${{ secrets.CX_API_KEY }}
+            cx_apikey: ${{ secrets.CX_API_KEY }}
           # cx_tenant: ${{ secrets.TENANT }} 
           # cx_client_id: ${{ secrets.CLIENT_ID }}
           # cx_client_secret: ${{ secrets.CLIENT_SECRET }}
