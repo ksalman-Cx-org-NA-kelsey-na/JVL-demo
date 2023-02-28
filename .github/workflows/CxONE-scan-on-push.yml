@@ -17,7 +17,6 @@ jobs:
         uses: Checkmarx/ast-github-action@2.0.9
         with:
           base_uri: https://ast.checkmarx.net/
-          cx_apikey: ${{ secrets.cx_apikey }}
           # cx_tenant: ${{ secrets.TENANT }} 
           # cx_client_id: ${{ secrets.CLIENT_ID }}
           # cx_client_secret: ${{ secrets.CLIENT_SECRET }}
@@ -29,8 +28,7 @@ jobs:
           #github_token:
           # optional, default is ${{ github.token }}
           # Additional parameters for AST scan
-          additional_params: --file-filter !readme --report-format sarif --output-name CX
-          #--sast-filter !src/main/webapp
+          additional_params: --file-filter !readme --report-format sarif --output-name --sast-filter !src/main/webapp --cx_apikey ${{ secrets.cx_apikey }}
           #repo_name:
           # optional, default is ${{ github.event.repository.name }}
           # Organization name to create the Pr comment
